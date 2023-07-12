@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulb with switch</title>
+    <style>
+        
+        :root{
+            --bulboffclr: #444;
+            --bulbonclr: #fff;
+            --outlineclr: #000;
+        }
+        *
+        {
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        body
+        {
+            display:flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #191919;
+        }
+        body.illuminate
+        {
+            background: radial-gradient(#555,#000);
+        }
+        .bulb
+        {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            background: var(--bulboffclr);
+            border-radius: 50%;
+            z-index: 2;
+        }
+        .light.on .bulb
+        {
+            box-shadow: 0 0 50px var(--bulbonclr),
+                        0 0 100px var(--bulbonclr),
+                        0 0 150px var(--bulbonclr),
+                        0 0 200px var(--bulbonclr),
+                        0 0 250px var(--bulbonclr);
+        }
+        .light.on .bulb,
+        .light.on .bulb::before
+        {
+            background: var(--bulbonclr);
+        }
+        .bulb::before
+        {
+            content: '';
+            position: absolute;
+            top: -60px;
+            left: 43.5px;
+            width: 60px;
+            height: 100px;
+            background: var(--bulboffclr);
+            border-top: 35px solid var(--outlineclr);
+            border-radius: 20px;
+        }
+        .bulb span:nth-child(1)
+        {
+            position: absolute;
+            display: block;
+            top: -20px;
+            left: 8.5px;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border-bottom-right-radius: 40px;
+            box-shadow: 20px 20px 0 10px var(--bulboffclr);
+            transform: rotate(345deg);
+        }
+        .light.on .bulb span:nth-child(1)
+        {
+            box-shadow: 20px 20px 0 10px var(--bulbonclr);
+        }
+        .bulb span:nth-child(2)
+        {
+            position: absolute;
+            display: block;
+            top: -20px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            background: transparent;
+            border-bottom-left-radius: 40px;
+            box-shadow: -20px 20px 0 10px var(--bulboffclr);
+            transform: rotate(10deg);
+        }
+        .light.on .bulb span:nth-child(2)
+        {
+            box-shadow: -20px 20px 0 10px var(--bulbonclr);
+        }
+        .light.on .bulb::after
+        {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            width: 210px;
+            height: 210px;
+            background: var(--bulbonclr);
+            border-radius: 50%;
+            filter: blur(40px);
+            opacity: 0.6;
+        }
+        .wire
+        {
+            position: absolute;
+            left: calc(50% - 3px);
+            bottom: 50%;
+            width: 4px;
+            height: 60vh;
+            background: var(--outlineclr);
+            z-index: 1;
+        }
+        .switch
+        {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(#ecce98,#c6a059,#ecce98);
+            border: 2px solid var(--outlineclr);
+            box-shadow: 0 8px 10px rgba(0,0,0,0.3);
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .switch .btn
+        {
+            position: relative;
+            width: 30px;
+            height: 40px;
+            background: linear-gradient(#5d5951,#ecce98,#5d5951);
+            border: 3px solid var(--outlineclr);
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .switch .btn::before
+        {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 82%;
+            background: #e8d2a9;
+            border-radius: 5px;
+        }
+        .light.on .btn::before
+        {
+            top: 18%;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="light">
+        <div class="wire"></div>
+        <div class="bulb">
+            <span></span>
+            <span></span>
+        </div>
+        <div class="switch">
+            <div class="btn"></div>
+        </div>
+    </div>
+    <!-- sound on click -->
+    <audio src="click.mp3" id="click" autostart="false"></audio>
+
+    <script>
+        const light = document.querySelector('.light');
+        const btn = document.querySelector('.btn');
+        const sound = document.querySelector('#click');
+        const backdrop = document.querySelector('body');
+        btn.addEventListener('click', ()=> {
+            light.classList.toggle('on');
+            backdrop.classList.toggle('illuminate');
+            sound.play();
+        });
+    </script>
+</body>
+</html>
