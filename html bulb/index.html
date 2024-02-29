@@ -176,18 +176,17 @@
             <div class="btn"></div>
         </div>
     </div>
-    <!-- sound on click -->
-    <audio src="click.mp3" id="click" autostart="false"></audio>
-
+   
     <script>
         const light = document.querySelector('.light');
-        const btn = document.querySelector('.btn');
-        const sound = document.querySelector('#click');
+        const switch = document.querySelector('.btn');
+        const sound = new Audio("./click.mp3")
         const backdrop = document.querySelector('body');
-        btn.addEventListener('click', ()=> {
-            light.classList.toggle('on');
-            backdrop.classList.toggle('illuminate');
-            sound.play();
+        switch.addEventListener('click', () => {
+								
+sound.play();            light.classList.toggle('on');
+ backdrop.classList.toggle('illuminate');
+            
         });
     </script>
 </body>
