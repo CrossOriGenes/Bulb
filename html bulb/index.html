@@ -196,10 +196,10 @@
    
     <script>
         const light = document.querySelector('.light');
-        const switch = document.querySelector('.btn');
+        const toggleSwitch = document.querySelector('.btn');
         const sound = new Audio("./click.mp3");
         const backdrop = document.querySelector('body');
-        switch.addEventListener('click', () => {
+        toggleSwitch.addEventListener('click', () => {
 	    sound.play();            
 	    light.classList.toggle('on');
  	    backdrop.classList.toggle('illuminate');
