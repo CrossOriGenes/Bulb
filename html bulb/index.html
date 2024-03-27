@@ -12,12 +12,14 @@
             --bulbonclr: #fff;
             --outlineclr: #000;
         }
+	    
         *
         {
             margin:0;
             padding:0;
             box-sizing: border-box;
         }
+	    
         body
         {
             display:flex;
@@ -26,10 +28,12 @@
             min-height: 100vh;
             background: #191919;
         }
+	    
         body.illuminate
         {
             background: radial-gradient(#555,#000);
         }
+	    
         .bulb
         {
             position: relative;
@@ -39,6 +43,7 @@
             border-radius: 50%;
             z-index: 2;
         }
+	    
         .light.on .bulb
         {
             box-shadow: 0 0 50px var(--bulbonclr),
@@ -47,11 +52,13 @@
                         0 0 200px var(--bulbonclr),
                         0 0 250px var(--bulbonclr);
         }
+	    
         .light.on .bulb,
         .light.on .bulb::before
         {
             background: var(--bulbonclr);
         }
+	    
         .bulb::before
         {
             content: '';
@@ -64,6 +71,7 @@
             border-top: 35px solid var(--outlineclr);
             border-radius: 20px;
         }
+	    
         .bulb span:nth-child(1)
         {
             position: absolute;
@@ -77,10 +85,12 @@
             box-shadow: 20px 20px 0 10px var(--bulboffclr);
             transform: rotate(345deg);
         }
+	    
         .light.on .bulb span:nth-child(1)
         {
             box-shadow: 20px 20px 0 10px var(--bulbonclr);
         }
+	    
         .bulb span:nth-child(2)
         {
             position: absolute;
@@ -94,10 +104,12 @@
             box-shadow: -20px 20px 0 10px var(--bulboffclr);
             transform: rotate(10deg);
         }
+	    
         .light.on .bulb span:nth-child(2)
         {
             box-shadow: -20px 20px 0 10px var(--bulbonclr);
         }
+	    
         .light.on .bulb::after
         {
             content: '';
@@ -112,6 +124,7 @@
             filter: blur(40px);
             opacity: 0.6;
         }
+	    
         .wire
         {
             position: absolute;
@@ -122,6 +135,7 @@
             background: var(--outlineclr);
             z-index: 1;
         }
+	    
         .switch
         {
             position: absolute;
@@ -137,6 +151,7 @@
             justify-content: center;
             align-items: center;
         }
+	    
         .switch .btn
         {
             position: relative;
@@ -147,6 +162,7 @@
             border-radius: 5px;
             cursor: pointer;
         }
+	    
         .switch .btn::before
         {
             content: '';
@@ -158,6 +174,7 @@
             background: #e8d2a9;
             border-radius: 5px;
         }
+	    
         .light.on .btn::before
         {
             top: 18%;
@@ -180,13 +197,12 @@
     <script>
         const light = document.querySelector('.light');
         const switch = document.querySelector('.btn');
-        const sound = new Audio("./click.mp3")
+        const sound = new Audio("./click.mp3");
         const backdrop = document.querySelector('body');
         switch.addEventListener('click', () => {
-								
-sound.play();            light.classList.toggle('on');
- backdrop.classList.toggle('illuminate');
-            
+	    sound.play();            
+	    light.classList.toggle('on');
+ 	    backdrop.classList.toggle('illuminate');
         });
     </script>
 </body>
